@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'Jersey 10';
+            src: url('https://fonts.gstatic.com/s/jersey10/v1/ll0_K2mSJpoKHHMpnP0RvghD3kY.woff2') format('woff2');
+            font-display: swap;
+        }
+        
+        body {
+            overflow: hidden;
+            height: 100vh;
+            background: url(image/Group\ 3.png) no-repeat center/cover fixed;
+            position: relative;
+            font-family: 'Jersey 10', sans-serif;
+            opacity: 0;
+            transition: opacity 0.5s;
+            margin: 0;
+            padding: 0;
+        }
+
+        .site-background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        /* Мигающие элементы */
+        .blinking-image {
+            position: absolute;
+            width: 4.12%; /* 61/1481 */
+            height: 8.24%; /* 67/813 */
+            left: 12.69%; /* 188/1481 */
+            top: 4.43%; /* 36/813 */
+            animation: blink 4s ease-in-out infinite;
+        }
+        
+        .blinking-image-1 {
+            position: absolute;
+            width: 1.58%; /* 23.35/1481 */
+            height: 3.94%; /* 32/813 */
+            left: 31.47%; /* 466/1481 */
+            top: 14.88%; /* 121/813 */
+            animation: blink 3.5s ease-in-out infinite 0.5s;
+        }
+        
+        .blinking-image-2 {
+            position: absolute;
+            width: 1.58%; /* 23.35/1481 */
+            height: 3.94%; /* 32/813 */
+            left: 62.12%; /* 920/1481 */
+            top: 4.43%; /* 36/813 */
+            animation: blink 5s ease-in-out infinite 1s;
+        }
+        
+        .blinking-image-3 {
+            position: absolute;
+            width: 2.84%; /* 42/1481 */
+            height: 7.13%; /* 58/813 */
+            left: 77.31%; /* 1145/1481 */
+            top: 9.59%; /* 78/813 */
+            animation: blink 4.5s ease-in-out infinite 1.5s;
+        }
+
+        /* Центральное изображение */
+        .center-glow-image {
+            position: absolute;
+            width: 30.25%; /* 448/1481 */
+            height: 63.96%; /* 520/813 */
+            left: 34.84%; /* 516/1481 */
+            top: 17.96%; /* 146/813 */
+            background: url(image/катяйца.png) no-repeat center/contain;
+            
+        }
+
+        /* Общие стили для кнопок */
+        .image-button {
+            position: absolute;
+            width: 10.53%; /* 156/1481 */
+            height: 6.54%; /* 53.14/813 */
+            padding: 0;
+            border: none;
+            background: none;
+            cursor: pointer;
+            background-image: url(image/New\ Piskel\ \(26\)\ 1\ \(2\).png);
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #031694;
+            font-size: min(1.5vw, 2vh);
+            font-weight: bold;
+            text-align: center;
+            font-family: 'Pixelify Sans', sans-serif;
+        }
+        
+        .image-button:hover {
+            background-image: url(image/New\ Piskel\ \(26\)\ 1\ \(1\)\ 1.png);
+        }
+
+        /* Позиционирование кнопок */
+        .image-button-1 {
+            top: 55.6%; /* 452/813 */
+            left: 39.02%; /* 563/1481 */
+        }
+        
+        .image-button-2 {
+            top: 55.6%; /* 452/813 */
+            left: 50.32%; /* 760/1481 */
+        }
+        
+        .image-button-3 {
+            top: 63.84%; /* 519/813 */
+            left: 39.02%; /* 563/1481 */
+        }
+        
+        .image-button-4 {
+            top: 63.84%; /* 519/813 */
+            left: 50.32%; /* 760/1481 */
+        }
+        
+        .image-button-5 {
+            top: 72.2%; /* 587/813 */
+            left: 44.56%; /* 660/1481 */
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; filter: brightness(1.2); }
+            50% { opacity: 0.3; filter: brightness(0.7); }
+        }
+        
+        
+    </style>
+</head>
+<body>
+    <div class="site-background"></div>
+    
+    <!-- Мигающие изображения -->
+    <img src="image/New Piskel (28) 2.png" class="blinking-image" alt="Мигающий элемент">
+    <img src="image/New Piskel (27) 5 (1).png" class="blinking-image-1" alt="Мигающий элемент-1">
+    <img src="image/New Piskel (27) 5 (1).png" class="blinking-image-2" alt="Мигающий элемент-2">
+    <img src="image/New Piskel (27) 5 (2).png" class="blinking-image-3" alt="Мигающий элемент-3">
+    
+    <!-- Центральное изображение -->
+    <div class="center-glow-image" aria-hidden="true"></div>
+    
+    <!-- Кнопки -->
+    <button class="image-button image-button-1" onclick="window.location.href='выборблюдаСВ.html'">ВЫСШАЯ</button>
+    <button class="image-button image-button-2" onclick="window.location.href='выборблюдаС0.html'">Отборное</button>
+    <button class="image-button image-button-3" onclick="window.location.href='выборблюдас1.html'">С1</button>
+    <button class="image-button image-button-4" onclick="window.location.href='выборблюдас2.html'">С2</button>
+    <button class="image-button image-button-5" onclick="window.location.href='выборблюдас3.html'">С3</button>
+
+    <script>
+        document.fonts.ready.then(function() {
+            document.body.style.opacity = 1;
+        });
+        
+        function adjustLayout() {
+            const buttons = document.querySelectorAll('.image-button');
+            buttons.forEach(button => {
+                // Подгоняем размер шрифта под высоту кнопки
+                const fontSize = Math.min(
+                    button.offsetHeight * 0.3, 
+                    button.offsetWidth * 0.15
+                );
+                button.style.fontSize = `${fontSize}px`;
+            });
+        }
+        
+        window.addEventListener('load', adjustLayout);
+        window.addEventListener('resize', adjustLayout);
+    </script>
+</body>
+<html>

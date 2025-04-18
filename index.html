@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'Jersey 10';
+            src: url('https://fonts.gstatic.com/s/jersey10/v1/ll0_K2mSJpoKHHMpnP0RvghD3kY.woff2') format('woff2');
+            font-display: swap;
+        }
+        
+        body {
+            overflow: hidden;
+            height: 100vh;
+            background: url(image/Group%203.png) no-repeat center/cover fixed;
+            position: relative;
+            font-family: 'Jersey 10', 'Arial', sans-serif;
+            opacity: 0;
+            transition: opacity 0.5s;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Фоновый слой */
+        .site-background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        /* Мигающие изображения */
+        .blinking-image {
+            position: absolute;
+            width: 4.12%; /* 61px / 1481px */
+            height: 8.24%; /* 67px / 813px */
+            left: 12.69%; /* 188px / 1481px */
+            top: 4.43%; /* 36px / 813px */
+            animation: blink 4s ease-in-out infinite;
+            will-change: opacity;
+        }
+        
+        .blinking-image-1 {
+            position: absolute;
+            width: 1.58%; /* 23.35px / 1481px */
+            height: 3.94%; /* 32px / 813px */
+            left: 31.47%; /* 466px / 1481px */
+            top: 14.88%; /* 121px / 813px */
+            animation: blink 3.5s ease-in-out infinite 0.5s;
+            will-change: opacity;
+        }
+        
+        .blinking-image-2 {
+            position: absolute;
+            width: 1.58%; /* 23.35px / 1481px */
+            height: 3.94%; /* 32px / 813px */
+            left: 62.12%; /* 920px / 1481px */
+            top: 4.43%; /* 36px / 813px */
+            animation: blink 5s ease-in-out infinite 1s;
+            will-change: opacity;
+        }
+        
+        .blinking-image-3 {
+            position: absolute;
+            width: 2.84%; /* 42px / 1481px */
+            height: 7.13%; /* 58px / 813px */
+            left: 77.31%; /* 1145px / 1481px */
+            top: 9.59%; /* 78px / 813px */
+            animation: blink 4.5s ease-in-out infinite 1.5s;
+            will-change: opacity;
+        }
+
+        /* Контейнер для центрального изображения и кнопки */
+        .center-container {
+            position: absolute;
+            width: 30.25%; /* 448px / 1481px */
+            height: 63.96%; /* 520px / 813px */
+            left: 34.84%; /* 516px / 1481px */
+            top: 17.96%; /* 146px / 813px */
+        }
+
+        /* Центральное изображение */
+        .center-glow-image {
+            width: 100%;
+            height: 100%;
+            background: url(image/Group%206.png) no-repeat center/contain;
+            position: relative;
+        }
+
+        /* Кнопка внутри центрального изображения */
+        .image-button {
+            position: absolute;
+            bottom: 10%; /* Отступ от нижнего края изображения */
+            left: 50%;
+            width: 55%; /* Ширина относительно центрального изображения */
+            height: 16%; /* Высота относительно центрального изображения */
+            transform: translateX(-50%);
+            padding: 0;
+            border: none;
+            background: none;
+            cursor: pointer;
+            background-image: url(image/New\ Piskel\ \(26\)\ 1\ \(2\).png);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #031694;
+            font-size: 20px; /* Адаптивный размер текста */
+            font-weight: bold;
+            text-align: center;
+            font-family: 'Pixelify Sans', sans-serif;
+            z-index: 2;
+        }
+        
+        .image-button:hover {
+            background-image: url(image/New\ Piskel\ \(26\)\ 1\ \(1\)\ 1.png);
+        }
+
+        /* Анимация мигания */
+        @keyframes blink {
+            0%, 100% { opacity: 1; filter: brightness(1.2); }
+            50% { opacity: 0.3; filter: brightness(0.7); }
+        }
+    </style>
+</head>
+<body>
+    <div class="site-background"></div>
+    
+    <!-- Мигающие изображения -->
+    <img src="image/New%20Piskel%20(28)%202.png" 
+         class="blinking-image" 
+         alt="Мигающий элемент">
+    <img src="image/New%20Piskel%20(27)%205%20(1).png" 
+         class="blinking-image-1" 
+         alt="Мигающий элемент-1">
+    <img src="image/New%20Piskel%20(27)%205%20(1).png" 
+         class="blinking-image-2" 
+         alt="Мигающий элемент-2">
+    <img src="image/New%20Piskel%20(27)%205%20(2).png" 
+         class="blinking-image-3" 
+         alt="Мигающий элемент-3">
+    
+    <!-- Контейнер с центральным изображением и кнопкой -->
+    <div class="center-container">
+        <div class="center-glow-image" aria-hidden="true"></div>
+        <button class="image-button" onclick="window.location.href='выборптицы.html'">да!</button>
+    </div>
+
+    <script>
+        // Показываем контент после загрузки шрифтов
+        document.fonts.ready.then(function() {
+            document.body.style.opacity = 1;
+        });
+        
+       
+       
+            
+    
+        
+     
+       
+    </script>
+</body>
+</html>

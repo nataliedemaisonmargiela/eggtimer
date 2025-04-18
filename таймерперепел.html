@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+10&family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'Jersey 10';
+            src: url('https://fonts.gstatic.com/s/jersey10/v1/ll0_K2mSJpoKHHMpnP0RvghD3kY.woff2') format('woff2');
+            font-display: swap;
+        }
+        
+        body {
+            overflow: hidden;
+            height: 100vh;
+            background: url(image/Group%203.png) no-repeat center/cover fixed;
+            position: relative;
+            font-family: 'Jersey 10', sans-serif;
+            opacity: 0;
+            transition: opacity 0.3s;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Мигающие изображения с разными интервалами */
+        .blinking-image {
+            position: absolute;
+            width: 4.12%;
+            height: 8.24%;
+            left: 12.69%;
+            top: 4.43%;
+            animation: blink 4s ease-in-out infinite;
+            will-change: opacity;
+        }
+        
+        .blinking-image-1 {
+            position: absolute;
+            width: 1.58%;
+            height: 3.94%;
+            left: 31.47%;
+            top: 14.88%;
+            animation: blink 3.5s ease-in-out infinite 0.5s;
+            will-change: opacity;
+        }
+        
+        .blinking-image-2 {
+            position: absolute;
+            width: 1.58%;
+            height: 3.94%;
+            left: 62.12%;
+            top: 4.43%;
+            animation: blink 5s ease-in-out infinite 1s;
+            will-change: opacity;
+        }
+        
+        .blinking-image-3 {
+            position: absolute;
+            width: 2.84%;
+            height: 7.13%;
+            left: 77.31%;
+            top: 9.59%;
+            animation: blink 4.5s ease-in-out infinite 1.5s;
+            will-change: opacity;
+        }
+
+        /* Контейнер для центрального изображения и свечения */
+        .center-container {
+            position: absolute;
+            width: 30.25%;
+            height: 63.96%;
+            left: 34.84%;
+            top: 17.96%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Центральное изображение с точным совпадением свечения */
+        .center-glow-image {
+            width: 100%;
+            height: 100%;
+            background: url(image/Group\ 4\ \(2\).png) no-repeat center/contain;
+        }
+        
+        .timer {
+            position: absolute;
+            left: 50%;
+            top: 62.24%;
+            transform: translateX(-50%);
+            font-size: calc(5vw + 5vh);
+            color: #ffffff;
+            text-shadow: 
+                -2px -2px 0 #031694,
+                2px -2px 0 #031694,
+                -2px 2px 0 #031694,
+                2px 2px 0 #031694;
+            font-family: 'Jersey 10', sans-serif;
+            white-space: nowrap;
+            text-align: center;
+            width: 100%;
+        }
+        
+        .image-container {
+            position: absolute;
+            left: 50%;
+            top: 41.60%;
+            width: 12.5%;
+            height: 23.6%;
+            transform: translateX(-50%);
+        }
+        
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+        }
+        
+        .image-container img.active {
+            display: block;
+        }
+        
+        .timer-complete-button {
+            position: absolute;
+            left: 50%;
+            top: 68.79%;
+            width: 13.5%;
+            height: 9.84%;
+            transform: translateX(-50%);
+            background: url(image/New\ Piskel\ \(26\)\ 1\ \(2\).png) no-repeat center/contain;
+            cursor: pointer;
+            display: none;
+            z-index: 10;
+            animation: pulse 1.5s infinite;
+            color: #031694;
+            font-size: min(2.21vh, 2.21vw);
+            font-weight: bold;
+            text-align: center;
+            font-family: 'Pixelify Sans', sans-serif;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .timer-complete-button:hover {
+            background-image: url(image/New\ Piskel\ \(26\)\ 1\ \(1\)\ 1.png);
+        }
+
+        /* Стили для pop-up */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+        
+        .popup-content {
+            background-color: #7ec3ff;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 80%;
+            position: relative;
+            font-family: 'Pixelify Sans', sans-serif;
+            font-size: 16px;
+
+        }
+        
+        .popup-button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: #031694;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Pixelify Sans', sans-serif;
+            font-size: 16px;
+        }
+        
+        .popup-button:hover {
+            background-color: #0528c7;
+        }
+
+        /* Анимация мигания */
+        @keyframes blink {
+            0%, 100% { opacity: 1; filter: brightness(1.2); }
+            50% { opacity: 0.3; filter: brightness(0.7); }
+        }
+        
+        /* Анимация пульсации */
+        @keyframes pulse {
+            0% { transform: translateX(-50%) scale(1); }
+            50% { transform: translateX(-50%) scale(1.05); }
+            100% { transform: translateX(-50%) scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Мигающие изображения -->
+    <img src="image/New%20Piskel%20(28)%202.png" 
+         class="blinking-image" 
+         alt="Мигающий элемент">
+    <img src="image/New%20Piskel%20(27)%205%20(1).png" 
+         class="blinking-image-1" 
+         alt="Мигающий элемент-1">
+    <img src="image/New%20Piskel%20(27)%205%20(1).png" 
+         class="blinking-image-2" 
+         alt="Мигающий элемент-2">
+    <img src="image/New%20Piskel%20(27)%205%20(2).png" 
+         class="blinking-image-3" 
+         alt="Мигающий элемент-3">     
+    
+    <!-- Центральное изображение с точным свечением -->
+    <div class="center-container">
+        <div class="center-glow-image" aria-hidden="true"></div>
+    </div>
+    
+    <div class="image-container">
+        <img src="image/1.png" class="active" alt="Image 1">
+        <img src="image/2.png" alt="Image 2">
+        <img src="image/3.png" alt="Image 3">
+        <img src="image/4.png" alt="Image 4">
+    </div>
+    
+    <div class="timer" id="timer">00:00</div>
+    <div class="timer-complete-button" id="timerCompleteButton" onclick="window.location.href='последняя.html'">ЗАВЕРШИТЬ</div>
+    
+    <!-- Pop-up окно -->
+    <div class="popup-overlay" id="popupOverlay">
+        <div class="popup-content">
+            <h2>Внимание !</h2>
+            <p>Звуковой сигнал оповестит вас об истечении таймера.</p>
+            <button class="popup-button" id="popupButton">Понятно</button>
+        </div>
+    </div>
+    
+    <audio id="alarmSound" preload="auto">
+        <source src="electronic-alarm-signal.mp3" type="audio/mpeg">
+    </audio>
+    
+    <script>
+        // Определяем время таймера
+        let totalSeconds;
+        
+        // Получаем параметры из URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const timerType = urlParams.get('type');
+        
+        // Устанавливаем время в зависимости от параметра
+        switch(timerType) {
+            case 'мешочек':
+                totalSeconds = 75; // 5:00
+                break;
+            case 'всмятку':
+                totalSeconds = 49; // 3:15
+                break;
+            case 'вкрутую':
+                totalSeconds = 135; // 9:00
+                break;
+            case 'яичница':
+                totalSeconds = 84; //
+        }
+        
+        // Инициализация элементов
+        const timerElement = document.getElementById('timer');
+        const timerCompleteButton = document.getElementById('timerCompleteButton');
+        const popupOverlay = document.getElementById('popupOverlay');
+        const popupButton = document.getElementById('popupButton');
+        
+        // Функция показа pop-up
+        function showPopup() {
+            popupOverlay.style.opacity = '1';
+            popupOverlay.style.visibility = 'visible';
+        }
+        
+        // Функция скрытия pop-up
+        function hidePopup() {
+            popupOverlay.style.opacity = '0';
+            popupOverlay.style.visibility = 'hidden';
+        }
+        
+        // Обработчик кнопки pop-up
+        popupButton.addEventListener('click', hidePopup);
+        
+        function updateTimer() {
+            if (totalSeconds <= 0) {
+                timerElement.style.display = 'none';
+                timerCompleteButton.style.display = 'flex';
+                alarmSound.play();
+                return;
+            }
+            
+            totalSeconds--;
+            const minutes = Math.floor(totalSeconds / 60).toString().padStart(2, '0');
+            const seconds = (totalSeconds % 60).toString().padStart(2, '0');
+            timerElement.textContent = `${minutes}:${seconds}`;
+        }
+        
+        // Смена изображений
+        const images = document.querySelectorAll('.image-container img');
+        let currentImageIndex = 0;
+        
+        function changeImage() {
+            images[currentImageIndex].classList.remove('active');
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            images[currentImageIndex].classList.add('active');
+        }
+        
+        // Запуск при загрузке страницы
+        window.onload = function() {
+            // Установка начального значения
+            const minutes = Math.floor(totalSeconds / 60).toString().padStart(2, '0');
+            const seconds = (totalSeconds % 60).toString().padStart(2, '0');
+            timerElement.textContent = `${minutes}:${seconds}`;
+            
+            // Запуск таймера
+            setInterval(updateTimer, 1000);
+            
+            // Смена изображений
+            setInterval(changeImage, 700);
+            
+            // Показываем pop-up через 2 секунды
+            setTimeout(showPopup, 2000);
+            
+            document.fonts.ready.then(function() {
+                document.body.style.opacity = 1;
+            });
+        };
+    </script>
+</body>
+</html>

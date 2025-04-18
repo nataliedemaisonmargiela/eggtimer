@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Advent+Pro&display=swap" rel="stylesheet">
+    <style>
+        body {
+            overflow: hidden;
+            height: 100vh;
+            background: url(image/Group\ 3.png) no-repeat center/cover fixed;
+            position: relative;
+            font-family: 'Advent Pro', sans-serif;
+            opacity: 0;
+            transition: opacity 0.5s;
+            margin: 0;
+            padding: 0;
+            background-color: transparent;
+        }
+
+        /* Pop-up стили */
+        .popup-overlay {
+            position: fixed;
+            top: 53.02%;
+            left: 50.04%;
+            width: 25.93%;
+            height: 25.58%;
+            background: url(image/попап.png) no-repeat center/contain;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Мигающие элементы */
+        .blinking-image {
+            position: absolute;
+            width: 4.12%;
+            height: 8.24%;
+            left: 12.69%;
+            top: 4.43%;
+            animation: blink 4s ease-in-out infinite;
+            background-color: transparent;
+        }
+        
+        .blinking-image-1 {
+            position: absolute;
+            width: 1.58%;
+            height: 3.94%;
+            left: 31.47%;
+            top: 14.88%;
+            animation: blink 3.5s ease-in-out infinite 0.5s;
+            background-color: transparent;
+        }
+        
+        .blinking-image-2 {
+            position: absolute;
+            width: 1.58%;
+            height: 3.94%;
+            left: 62.12%;
+            top: 4.43%;
+            animation: blink 5s ease-in-out infinite 1s;
+            background-color: transparent;
+        }
+        
+        .blinking-image-3 {
+            position: absolute;
+            width: 2.84%;
+            height: 7.13%;
+            left: 77.31%;
+            top: 9.59%;
+            animation: blink 4.5s ease-in-out infinite 1.5s;
+            background-color: transparent;
+        }
+        
+        /* Центральное изображение */
+        .center-glow-image {
+            position: absolute;
+            width: 30.25%;
+            height: 63.96%;
+            left: 34.84%;
+            top: 17.96%;
+            background: url(image/блюдо.png) no-repeat center/contain;
+            background-color: transparent;
+        }
+        
+        
+        .image-button {
+            position: absolute;
+            border: none;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            z-index: 100;
+            background-color: transparent !important; /* Важное правило */
+            padding: 0;
+            margin: 0;
+            outline: none;
+        }
+
+        /* Индивидуальные стили кнопок */
+        .image-button-1 {
+            top: 42.07%;
+            left: 39.91%;
+            width: 8.71%;
+            height: 19.06%;
+            background-image: url(image/мешочек.png);
+        }
+        
+        .image-button-2 {
+            top: 42.07%;
+            left: 51.38%;
+            width: 8.71%;
+            height: 19.06%;
+            background-image: url(image/Group\ 5\ \(1\).png);
+        }
+        
+        .image-button-3 {
+            top: 61.87%;
+            left: 39.91%;
+            width: 8.71%;
+            height: 16.75%;
+            background-image: url(image/вкрутую.png);
+        }
+        
+        .image-button-4 {
+            top: 62%;
+            left: 51.38%;
+            width: 8.71%;
+            height: 16.6%;
+            background-image: url(image/Group\ 7.png);
+        }
+
+        .image-button:hover {
+            transform: scale(1.05);
+        }
+
+        /* Кнопка popup */
+        .popup-button {
+            position: absolute;
+            top: 61.4%;
+            left: 33.5%;
+            background: url(image/Rectangle\ 9.png) no-repeat center/contain;
+            color: black;
+            border: none;
+            width: 36.72%;
+            height: 15.87%;
+            cursor: pointer;
+            transition: transform 0.3s;
+            font-family: 'Advent Pro', sans-serif;
+            font-size: 15px;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-transform: none;
+            background-color: transparent;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; filter: brightness(1.2); }
+            50% { opacity: 0.3; filter: brightness(0.7); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Мигающие изображения -->
+    <img src="image/New Piskel (28) 2.png" class="blinking-image" alt="Мигающий элемент">
+    <img src="image/New Piskel (27) 5 (1).png" class="blinking-image-1" alt="Мигающий элемент-1">
+    <img src="image/New Piskel (27) 5 (1).png" class="blinking-image-2" alt="Мигающий элемент-2">
+    <img src="image/New Piskel (27) 5 (2).png" class="blinking-image-3" alt="Мигающий элемент-3">
+    
+    <!-- Центральное изображение -->
+    <div class="center-glow-image"></div>
+    
+    <!-- Кнопки выбора -->
+    <button class="image-button image-button-1" id="button1"></button>
+    <button class="image-button image-button-2" id="button2"></button>
+    <button class="image-button image-button-3" id="button3"></button>
+    <button class="image-button image-button-4" id="button4"></button>
+    
+    <!-- Pop-up окно -->
+    <div class="popup-overlay" id="popup">
+        <div class="popup-content">
+            <button class="popup-button" id="confirmButton">Запуск</button>
+        </div>
+    </div>
+
+    <script>
+        let selectedType = '';
+        const popup = document.getElementById('popup');
+        const confirmButton = document.getElementById('confirmButton');
+        
+        function openPopup(type) {
+            selectedType = type;
+            popup.style.display = 'flex';
+        }
+        
+        function closePopup() {
+            popup.style.display = 'none';
+        }
+        
+        // Обработчики для кнопок
+        document.getElementById('button1').addEventListener('click', function(e) {
+            e.preventDefault();
+            openPopup('мешочек');
+        });
+        
+        document.getElementById('button2').addEventListener('click', function(e) {
+            e.preventDefault();
+            openPopup('всмятку');
+        });
+        
+        document.getElementById('button3').addEventListener('click', function(e) {
+            e.preventDefault();
+            openPopup('вкрутую');
+        });
+        
+        document.getElementById('button4').addEventListener('click', function(e) {
+            e.preventDefault();
+            openPopup('яичница');
+        });
+        
+        confirmButton.addEventListener('click', function() {
+            if (selectedType) {
+                window.location.href = `таймерС3.html?type=${selectedType}`;
+            }
+        });
+        
+        popup.addEventListener('click', function(e) {
+            if (e.target === popup) {
+                closePopup();
+            }
+        });
+        
+        document.fonts.ready.then(function() {
+            document.body.style.opacity = 1;
+        });
+    </script>
+</body>
+</html>

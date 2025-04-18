@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'Jersey 10';
+            src: url('https://fonts.gstatic.com/s/jersey10/v1/ll0_K2mSJpoKHHMpnP0RvghD3kY.woff2') format('woff2');
+            font-display: swap;
+        }
+        
+        body {
+            overflow: hidden;
+            height: 100vh;
+            background: url(image/Group%203.png) no-repeat center/cover fixed;
+            position: relative;
+            font-family: 'Jersey 10', 'Arial', sans-serif;
+            opacity: 0;
+            transition: opacity 0.5s;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Мигающие изображения */
+        .blinking-image {
+            position: absolute;
+            width: 4.12%;
+            height: 8.24%;
+            left: 12.69%;
+            top: 4.43%;
+            animation: blink 4s ease-in-out infinite;
+        }
+        
+        .blinking-image-1 {
+            position: absolute;
+            width: 1.58%;
+            height: 3.94%;
+            left: 31.47%;
+            top: 14.88%;
+            animation: blink 3.5s ease-in-out infinite 0.5s;
+        }
+        
+        .blinking-image-2 {
+            position: absolute;
+            width: 1.58%;
+            height: 3.94%;
+            left: 62.12%;
+            top: 4.43%;
+            animation: blink 5s ease-in-out infinite 1s;
+        }
+        
+        .blinking-image-3 {
+            position: absolute;
+            width: 2.84%;
+            height: 7.13%;
+            left: 77.31%;
+            top: 9.59%;
+            animation: blink 4.5s ease-in-out infinite 1.5s;
+        }
+
+        /* Центральное изображение */
+        .center-glow-image {
+            position: absolute;
+            width: 30.25%;
+            height: 63.96%;
+            left: 34.84%;
+            top: 17.96%;
+            background: url(image/типптицы.png) no-repeat center/contain;
+        }
+
+        /* Кнопки */
+        .image-button-1, .image-button-2 {
+            position: absolute;
+            top: 71.71%;
+            width: 10.53%;
+            height: 6.54%;
+            padding: 0;
+            margin: 0;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            background-image: url(image/New\ Piskel\ \(26\)\ 1\ \(2\).png);
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #031694;
+            font-size: min(1.5vw, 2vh);
+            font-weight: bold;
+            text-align: center;
+            font-family: 'Pixelify Sans', sans-serif;
+            text-decoration: none;
+            outline: none;
+        }
+        
+        .image-button-1 {
+            left: 39.28%;
+        }
+        
+        .image-button-2 {
+            left: 50.68%;
+        }
+        
+        .image-button-1:hover, .image-button-2:hover {
+            background-image: url(image/New\ Piskel\ \(26\)\ 1\ \(1\)\ 1.png);
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; filter: brightness(1.2); }
+            50% { opacity: 0.3; filter: brightness(0.7); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Мигающие изображения -->
+    <img src="image/New%20Piskel%20(28)%202.png" class="blinking-image" alt="Мигающий элемент">
+    <img src="image/New%20Piskel%20(27)%205%20(1).png" class="blinking-image-1" alt="Мигающий элемент-1">
+    <img src="image/New%20Piskel%20(27)%205%20(1).png" class="blinking-image-2" alt="Мигающий элемент-2">
+    <img src="image/New%20Piskel%20(27)%205%20(2).png" class="blinking-image-3" alt="Мигающий элемент-3">
+    
+    <!-- Центральное изображение -->
+    <div class="center-glow-image" aria-hidden="true"></div>
+    
+    <!-- Кнопки -->
+    <button class="image-button-1" onclick="window.location.href='категориякуриного.html'">куриное</button>
+    <button class="image-button-2" onclick="window.location.href='выборблюдаперепел.html'">перепелиное</button>
+
+    <script>
+        document.fonts.ready.then(function() {
+            document.body.style.opacity = 1;
+        });
+        
+        function adjustLayout() {
+            const buttons = document.querySelectorAll('.image-button-1, .image-button-2');
+            const vmin = Math.min(window.innerWidth, window.innerHeight) / 100;
+            
+            buttons.forEach(button => {
+                const fontSize = vmin * 1.8;
+                button.style.fontSize = `${fontSize}px`;
+                button.style.lineHeight = `${button.offsetHeight}px`;
+            });
+        }
+        
+        window.addEventListener('load', () => {
+            adjustLayout();
+            document.fonts.ready.then(function() {
+                document.body.style.opacity = 1;
+            });
+        });
+        window.addEventListener('resize', adjustLayout);
+    </script>
+</body>
+</html>
